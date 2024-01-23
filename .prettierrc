@@ -2,7 +2,7 @@
 	"plugins": ["prettier-plugin-organize-imports"],
 	"arrowParens": "always",
 	"bracketSameLine": true,
-	"bracketSpacing": false,
+	"bracketSpacing": true,
 	"semi": true,
 	"experimentalTernaries": false,
 	"singleQuote": false,
@@ -18,12 +18,5 @@
 	"requirePragma": false,
 	"tabWidth": 2,
 	"useTabs": true,
-	"embeddedLanguageFormatting": "auto",
-	"import-spacing": [
-		"always",
-		{
-			"afterImport": true,
-			"beforeImport": false
-		}
-	]
+	"embeddedLanguageFormatting": "auto"
 }
