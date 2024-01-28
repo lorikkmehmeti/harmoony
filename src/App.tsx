@@ -1,9 +1,9 @@
-import React from "react";
+import { routerRoutes } from "@/routes";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
 
 function App() {
-	const num = 2;
-	return <React.Fragment>{num}</React.Fragment>;
+	return <RouterProvider router={routerRoutes} />;
 }
 
 export default App;
