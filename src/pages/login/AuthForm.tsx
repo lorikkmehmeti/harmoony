@@ -57,7 +57,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							disabled={isLoading}
 						/>
 					</div>
-					<Button disabled={isLoading}>Sign In with Email</Button>
+					<Button disabled={isLoading}>Sign in with email</Button>
 				</div>
 			</form>
 			<div className="relative">
@@ -74,7 +74,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 				variant="outline"
 				type="button"
 				disabled={isLoading}>
-				GitHub
+				Microsoft Azure
 			</Button>
 		</div>
 	);
