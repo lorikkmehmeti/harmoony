@@ -69,11 +69,12 @@ export const AuthenticationPage = () => {
 					<div className="relative z-20">
 						<blockquote className="space-y-2">
 							<p className="text-lg">
-								&ldquo;This library has saved me countless hours of work and
-								helped me deliver stunning designs to my clients faster than
-								ever before.&rdquo;
+								&ldquo;Discover the harmony in HR management with Harmoony. It's
+								not just a platform; it's a composition of efficiency and ease.
+								Working with it is like conducting a seamless symphony of HR
+								tasks.&rdquo;
 							</p>
-							<footer className="text-sm">Sofia Davis</footer>
+							<footer className="text-sm">— Sofia Davis</footer>
 						</blockquote>
 					</div>
 				</div>
