@@ -50,7 +50,7 @@ export const AuthenticationPage = () => {
 						strokeWidth="0"
 						fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"></rect>
 				</svg>
-				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] md:p-6">
+				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] md:p-10">
 					<div className="absolute inset-0" />
 					<div className="relative z-20 flex items-center text-lg font-medium">
 						<svg
@@ -68,7 +68,7 @@ export const AuthenticationPage = () => {
 					</div>
 					<div className="relative z-20">
 						<blockquote className="space-y-2">
-							<p className="text-lg">
+							<p className="text-md font-light italic text-muted-foreground">
 								&ldquo;Discover the harmony in HR management with Harmoony. It's
 								not just a platform; it's a composition of efficiency and ease.
 								Working with it is like conducting a seamless symphony of HR

@@ -3,19 +3,46 @@ import * as React from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Label } from "@/components/ui/label.tsx";
+import { useAuthContext, useUser } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-	const [isLoading, setIsLoading] = React.useState<boolean>(false);
+	const [isLoading, setLoading] = React.useState<boolean>(false);
+	const user = useUser();
+
+	const auth = useAuthContext();
+	const navigate = useNavigate();
+
+	const [email] = useState("cavar20405@gosarlar.com");
+	const [password, setPassword] = useState("");
+
+	const login = async (email: string, password: string) => {
+		setLoading(true);
+		try {
+			await auth
+				.signInWithPassword({
+					email,
+					password,
+				})
+				.then(() => {
+					if (!user) window.location.reload();
+					else navigate("/dashboard");
+				});
+		} catch (error) {
+			/* empty */
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	async function onSubmit(event: React.SyntheticEvent) {
 		event.preventDefault();
-		setIsLoading(true);
-
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 3000);
+		if (email && password) {
+			await login(email, password);
+		}
 	}
 
 	return (
@@ -31,6 +58,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							Email
 						</Label>
 						<Input
+							value={email}
 							className="bg-white"
 							id="email"
 							placeholder="name@example.com"
@@ -38,7 +66,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							autoCapitalize="none"
 							autoComplete="email"
 							autoCorrect="off"
-							disabled={isLoading}
+							disabled={true}
+							readOnly={true}
 						/>
 
 						<Label
@@ -47,6 +76,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							Password
 						</Label>
 						<Input
+							value={password}
 							className="bg-white"
 							id="password"
 							placeholder="••••••••"
@@ -55,6 +85,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							autoComplete="password"
 							autoCorrect="off"
 							disabled={isLoading}
+							onChange={(event) => setPassword(event.target.value)}
 						/>
 					</div>
 					<Button disabled={isLoading}>Sign in with email</Button>
@@ -73,7 +104,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 			<Button
 				variant="outline"
 				type="button"
-				disabled={isLoading}>
+				disabled={true}>
 				Microsoft Azure
 			</Button>
 		</div>

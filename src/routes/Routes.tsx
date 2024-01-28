@@ -1,3 +1,4 @@
+import { Dashboard } from "@/pages/Dashboard/Dashboard.tsx";
 import Landing from "@/pages/landing/Landing.tsx";
 import { AuthenticationPage } from "@/pages/login/Login.tsx";
 import ProtectedRoute from "@/routes/ProtectedRoute.tsx";
@@ -15,11 +16,16 @@ export const routerRoutes = createBrowserRouter(
 				},
 				{
 					path: "/login",
-					element: <AuthenticationPage />,
+					element: (
+						<ProtectedRoute
+							children={<AuthenticationPage />}
+							loggedInRoutes={false}
+						/>
+					),
 				},
 				{
 					path: "/dashboard",
-					element: <ProtectedRoute children={<div>2394729384798237498</div>} />,
+					element: <ProtectedRoute children={<Dashboard />} />,
 				},
 			],
 		},

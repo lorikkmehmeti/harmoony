@@ -2,7 +2,6 @@ import { AuthError, Session, SupabaseClient } from "@supabase/supabase-js";
 import {
 	PropsWithChildren,
 	createContext,
-	useContext,
 	useEffect,
 	useMemo,
 	useState,
@@ -35,7 +34,7 @@ export type SessionContext =
 			supabaseClient: SupabaseClient;
 	  };
 
-const SessionContext = createContext<SessionContext>({
+export const SessionContext = createContext<SessionContext>({
 	isLoading: true,
 	session: null,
 	error: null,
@@ -80,7 +79,7 @@ export const SessionContextProvider = ({
 			}
 		}
 
-		getSession().then();
+		void getSession();
 
 		return () => {
 			mounted = false;
@@ -144,60 +143,4 @@ export const SessionContextProvider = ({
 	return (
 		<SessionContext.Provider value={value}>{children}</SessionContext.Provider>
 	);
-};
-
-export const useSessionContext = () => {
-	const context = useContext(SessionContext);
-	if (context === undefined) {
-		throw new Error(
-			`useSessionContext must be used within a SessionContextProvider.`,
-		);
-	}
-
-	return context;
-};
-
-export const useAuthContext = () => {
-	const { supabaseClient } = useContext(SessionContext);
-	if (supabaseClient === undefined) {
-		throw new Error(
-			`useAuthContext must be used within a SessionContextProvider.`,
-		);
-	}
-
-	return supabaseClient.auth;
-};
-
-export function useSupabaseClient<
-	Database = never,
-	SchemaName extends string & keyof Database = "public" extends keyof Database
-		? "public"
-		: string & keyof Database,
->() {
-	const context = useContext(SessionContext);
-	if (context === undefined) {
-		throw new Error(
-			`useSupabaseClient must be used within a SessionContextProvider.`,
-		);
-	}
-
-	return context.supabaseClient as SupabaseClient<Database, SchemaName>;
-}
-
-export const useSession = () => {
-	const context = useContext(SessionContext);
-	if (context === undefined) {
-		throw new Error(`useSession must be used within a SessionContextProvider.`);
-	}
-
-	return context.session;
-};
-
-export const useUser = () => {
-	const context = useContext(SessionContext);
-	if (context === undefined) {
-		throw new Error(`useUser must be used within a SessionContextProvider.`);
-	}
-
-	return context.session?.user ?? null;
 };
