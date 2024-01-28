@@ -19,7 +19,7 @@ export const AuthenticationPage = () => {
 					/>
 				</svg>
 			</div>
-			<div className="relative grid min-h-screen grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+			<div className="relative flex min-h-screen grid-cols-1 md:grid-cols-3 lg:grid">
 				<svg
 					className="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
 					aria-hidden="true">
@@ -50,7 +50,7 @@ export const AuthenticationPage = () => {
 						strokeWidth="0"
 						fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"></rect>
 				</svg>
-				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] md:p-10">
+				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] max-lg:hidden md:p-10">
 					<div className="absolute inset-0" />
 					<div className="relative z-20 flex items-center text-lg font-medium">
 						<svg
@@ -78,8 +78,8 @@ export const AuthenticationPage = () => {
 						</blockquote>
 					</div>
 				</div>
-				<div className="col-span-1 mx-auto flex w-full items-center justify-center md:col-span-1 xl:col-span-2">
-					<div className="rounded-md border border-accent bg-background shadow lg:p-10">
+				<div className="col-span-2 mx-auto flex w-full items-center justify-center max-md:col-span-3">
+					<div className="rounded-md border border-accent bg-background p-10 shadow">
 						<Link
 							to="/examples/authentication"
 							className={cn(
