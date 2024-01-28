@@ -1,5 +1,5 @@
-import { buttonVariants } from "@/components/ui/button.tsx";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/lib/variant.ts";
 import { UserAuthForm } from "@/pages/login/AuthForm.tsx";
 import { Link } from "react-router-dom";
 export const AuthenticationPage = () => {
