@@ -5,9 +5,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-const supabaseUrl = "https://wefgbvropriawflehvwc.supabase.co";
-const supabaseKey =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZmdidnJvcHJpYXdmbGVodndjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY0NzA5ODYsImV4cCI6MjAyMjA0Njk4Nn0.DP_ghcsQFfB-X3PCYsQifXa_Vjo1fRyejzKxFW7-y_M";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
