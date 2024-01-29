@@ -1,13 +1,36 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button.tsx";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import { Label } from "@/components/ui/label.tsx";
 import { useAuthContext, useUser } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const formSchema = z.object({
+	email: z
+		.string({
+			required_error: "Email is required",
+		})
+		.email({ message: "Email is invalid" }),
+	password: z
+		.string({
+			required_error: "Password is required",
+		})
+		.min(8, { message: "Password must be at least 8 characters" }),
+});
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const [isLoading, setLoading] = React.useState<boolean>(false);
@@ -16,10 +39,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const auth = useAuthContext();
 	const navigate = useNavigate();
 
-	const [email] = useState("cavar20405@gosarlar.com");
-	const [password, setPassword] = useState("");
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			email: "",
+			password: "",
+		},
+		mode: "onBlur",
+	});
 
-	const login = async (email: string, password: string) => {
+	const login = async (values: z.infer<typeof formSchema>) => {
+		const { email, password } = values;
 		setLoading(true);
 		try {
 			await auth
@@ -38,59 +68,59 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 		}
 	};
 
-	async function onSubmit(event: React.SyntheticEvent) {
-		event.preventDefault();
-		if (email && password) {
-			await login(email, password);
-		}
-	}
-
 	return (
 		<div
 			className={cn("grid gap-6", className)}
 			{...props}>
-			<form onSubmit={onSubmit}>
-				<div className="grid gap-2">
-					<div className="grid gap-1">
-						<Label
-							className="sr-only"
-							htmlFor="email">
-							Email
-						</Label>
-						<Input
-							value={email}
-							className="bg-white"
-							id="email"
-							placeholder="name@example.com"
-							type="email"
-							autoCapitalize="none"
-							autoComplete="email"
-							autoCorrect="off"
-							disabled={true}
-							readOnly={true}
-						/>
-
-						<Label
-							className="sr-only"
-							htmlFor="password">
-							Password
-						</Label>
-						<Input
-							value={password}
-							className="bg-white"
-							id="password"
-							placeholder="••••••••"
-							type="password"
-							autoCapitalize="none"
-							autoComplete="password"
-							autoCorrect="off"
-							disabled={isLoading}
-							onChange={(event) => setPassword(event.target.value)}
-						/>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(login)}>
+					<div className="grid gap-2">
+						<div className="grid gap-1">
+							<FormField
+								control={form.control}
+								name="email"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="sr-only">Username</FormLabel>
+										<FormControl>
+											<Input
+												placeholder="Enter your email"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="password"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="sr-only">Password</FormLabel>
+										<FormControl>
+											<Input
+												type="password"
+												placeholder="••••••••"
+												disabled={isLoading}
+												autoCapitalize="none"
+												autoComplete="password"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+						<Button
+							type="submit"
+							disabled={isLoading}>
+							Sign in with email
+						</Button>
 					</div>
-					<Button disabled={isLoading}>Sign in with email</Button>
-				</div>
-			</form>
+				</form>
+			</Form>
 			<div className="relative">
 				<div className="absolute inset-0 flex items-center">
 					<span className="w-full border-t" />

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const AuthenticationPage = () => {
 	return (
 		<>
-			<div className="md:hidden">
+			<div className="absolute left-6 top-6 lg:hidden">
 				<svg
 					className="h-5"
 					viewBox="0 0 264 264"
