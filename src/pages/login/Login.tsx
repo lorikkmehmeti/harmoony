@@ -51,7 +51,7 @@ export const AuthenticationPage = () => {
 						fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"></rect>
 				</svg>
 				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] max-lg:hidden md:p-10">
-					<div className="absolute inset-0" />
+					<div className="absolute inset-0 bg-white" />
 					<div className="relative z-20 flex items-center text-lg font-medium">
 						<svg
 							className="h-10"
@@ -81,12 +81,12 @@ export const AuthenticationPage = () => {
 				<div className="col-span-2 mx-auto flex w-full items-center justify-center max-md:col-span-3">
 					<div className="rounded-md border border-accent bg-background p-10 shadow">
 						<Link
-							to="/examples/authentication"
+							to="/login"
 							className={cn(
 								buttonVariants({ variant: "ghost" }),
 								"absolute right-4 top-4 md:right-8 md:top-8",
 							)}>
-							Login
+							Sign up
 						</Link>
 						<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 							<div className="flex flex-col space-y-2 text-center">
