@@ -11,7 +11,7 @@ export const Dashboard = () => {
 		auth
 			.signOut()
 			.then(() => {
-				navigate("/login");
+				navigate("/g/login");
 			})
 			.catch((err) => {
 				throw new Error(err);
