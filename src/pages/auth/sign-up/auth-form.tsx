@@ -10,8 +10,8 @@ import {
 	FormMessage,
 } from "@/components/ui/form.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import { useAuthContext, useUser } from "@/lib/hooks";
-import { cn } from "@/lib/utils";
+import { useUser } from "@/lib/hooks";
+import { cn } from "@/lib/utils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
@@ -21,6 +21,18 @@ import { z } from "zod";
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
+	// first_name: z
+	// 	.string({
+	// 		required_error: "First name is required",
+	// 	})
+	// 	.min(1, { message: "First name is required" })
+	// 	.min(2, { message: "First name must be at least 2 characters" }),
+	// last_name: z
+	// 	.string({
+	// 		required_error: "Last name is required",
+	// 	})
+	// 	.min(1, { message: "Last name is required" })
+	// 	.min(2, { message: "Last name must be at least 2 characters" }),
 	email: z
 		.string()
 		.min(1, { message: "Email field is required" })
@@ -35,7 +47,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const [isLoading, setLoading] = React.useState<boolean>(false);
 	const user = useUser();
 
-	const auth = useAuthContext();
+	// const auth = useAuthContext();
 	const navigate = useNavigate();
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -47,21 +59,35 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 		mode: "onBlur",
 	});
 
-	const login = async (values: z.infer<typeof formSchema>) => {
-		const { email, password } = values;
+	const login = async () => {
+		// values: z.infer<typeof formSchema>
+		// const { email, password } = values;
 		setLoading(true);
 		try {
-			await auth
-				.signInWithPassword({
-					email,
-					password,
-				})
-				.then(() => {
-					if (!user) window.location.reload();
-					else navigate("/dashboard");
-				});
+			// 	await auth
+			// 		.signInWithPassword({
+			// 			email,
+			// 			password,
+			// 		})
+			// 		.then((result: AuthTokenResponsePassword) => {
+			// 			if (result.error) {
+			// 				toast("An error has occurred", {
+			// 					description: result.error.message,
+			// 					position: "bottom-center",
+			// 					id: "invalid-credentials",
+			// 					important: true,
+			// 					cancel: {
+			// 						label: "Close",
+			// 						onClick: () => toast.dismiss(),
+			// 					},
+			// 				});
+			// 				return;
+			// 			}
+			if (!user) window.location.reload();
+			else navigate("/dashboard");
+			// 		});
 		} catch (error) {
-			/* empty */
+			// 	/* empty */
 		} finally {
 			setLoading(false);
 		}
@@ -72,9 +98,43 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 			className={cn("grid gap-6", className)}
 			{...props}>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(login)}>
+				<form
+					onSubmit={form.handleSubmit(login)}
+					autoComplete="off">
 					<div className="grid gap-2">
 						<div className="grid gap-1">
+							{/*<FormField*/}
+							{/*	control={form.control}*/}
+							{/*	name="first_name"*/}
+							{/*	render={({ field }) => (*/}
+							{/*		<FormItem>*/}
+							{/*			<FormLabel className="sr-only">First name</FormLabel>*/}
+							{/*			<FormControl>*/}
+							{/*				<Input*/}
+							{/*					placeholder="First name"*/}
+							{/*					{...field}*/}
+							{/*				/>*/}
+							{/*			</FormControl>*/}
+							{/*			<FormMessage />*/}
+							{/*		</FormItem>*/}
+							{/*	)}*/}
+							{/*/>*/}
+							{/*<FormField*/}
+							{/*	control={form.control}*/}
+							{/*	name="last_name"*/}
+							{/*	render={({ field }) => (*/}
+							{/*		<FormItem>*/}
+							{/*			<FormLabel className="sr-only">Last name</FormLabel>*/}
+							{/*			<FormControl>*/}
+							{/*				<Input*/}
+							{/*					placeholder="Last name"*/}
+							{/*					{...field}*/}
+							{/*				/>*/}
+							{/*			</FormControl>*/}
+							{/*			<FormMessage />*/}
+							{/*		</FormItem>*/}
+							{/*	)}*/}
+							{/*/>*/}
 							<FormField
 								control={form.control}
 								name="email"
@@ -83,6 +143,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 										<FormLabel className="sr-only">Username</FormLabel>
 										<FormControl>
 											<Input
+												autoComplete="off"
 												placeholder="Enter your email"
 												{...field}
 											/>
@@ -115,12 +176,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 						<Button
 							type="submit"
 							disabled={isLoading}>
-							Sign in with email
+							Sign up
 						</Button>
 					</div>
 				</form>
 			</Form>
-			<div className="relative">
+			<div className="relative hidden">
 				<div className="absolute inset-0 flex items-center">
 					<span className="w-full border-t" />
 				</div>
@@ -128,7 +189,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 					<span className="bg-background px-2 text-muted-foreground">Or</span>
 				</div>
 			</div>
-			<div className="flex w-full flex-col gap-2">
+			<div className="hidden w-full flex-col gap-2">
 				<Button
 					variant="outline"
 					type="button"

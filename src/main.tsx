@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner.tsx";
 import { SessionContextProvider } from "@/lib/providers/SessionContext.tsx";
 import { createClient } from "@supabase/supabase-js";
 import React from "react";
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<SessionContextProvider supabaseClient={supabase}>
 			<App />
+			<Toaster />
 		</SessionContextProvider>
 	</React.StrictMode>,
 );
