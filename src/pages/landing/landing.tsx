@@ -1,3 +1,5 @@
+import { ROUTES } from "@/lib/constants/routes.ts";
+import { _path } from "@/lib/utils.ts";
 import { NavLink } from "react-router-dom";
 
 export const Landing = () => {
@@ -69,7 +71,7 @@ export const Landing = () => {
 						</div>
 						<div className="hidden lg:flex lg:min-w-0 lg:justify-end">
 							<NavLink
-								to="/g/login"
+								to={_path(ROUTES.auth, ROUTES.login)}
 								className="focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex flex-shrink-0 items-center gap-x-2 rounded-md bg-gray-900 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus-visible:outline-0 focus-visible:ring-2 focus-visible:ring-inset disabled:cursor-not-allowed disabled:bg-gray-900 disabled:opacity-75 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:disabled:bg-white">
 								Log in
 							</NavLink>

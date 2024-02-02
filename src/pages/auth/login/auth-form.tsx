@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
+import { ROUTES } from "@/lib/constants/routes.ts";
 import { AuthTokenResponsePassword } from "@supabase/supabase-js";
 import { toast } from "sonner";
 
@@ -74,7 +75,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 						return;
 					}
 					if (!user) window.location.reload();
-					else navigate("/dashboard");
+					else navigate(ROUTES.dashboard);
 				});
 		} catch (error) {
 			/* empty */
@@ -99,6 +100,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 										<FormLabel className="sr-only">Email</FormLabel>
 										<FormControl>
 											<Input
+												type="text"
+												id="email"
+												aria-label="email"
+												auto-fill="off"
+												autoComplete="off"
 												placeholder="Enter your email"
 												{...field}
 											/>

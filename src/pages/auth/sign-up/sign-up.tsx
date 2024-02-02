@@ -1,4 +1,5 @@
-import { cn } from "@/lib/utils.ts";
+import { ROUTES } from "@/lib/constants/routes.ts";
+import { _path, cn } from "@/lib/utils.ts";
 import { buttonVariants } from "@/lib/variant.ts";
 import { UserAuthForm } from "@/pages/auth/sign-up/auth-form.tsx";
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ export const SignUpPage = () => {
 		<div>
 			<div className="rounded-md border border-accent bg-background p-10 shadow">
 				<Link
-					to="/g/login"
+					to={_path(ROUTES.auth, ROUTES.login)}
 					className={cn(
 						buttonVariants({ variant: "ghost" }),
 						"absolute right-4 top-4 md:right-8 md:top-8",
@@ -28,7 +29,7 @@ export const SignUpPage = () => {
 					<p className="px-8 text-center text-sm text-muted-foreground">
 						Already got an account{" "}
 						<Link
-							to="/g/login"
+							to={_path(ROUTES.auth, ROUTES.login)}
 							className="underline">
 							Sign in
 						</Link>

@@ -11,8 +11,9 @@ import {
 	FormMessage,
 } from "@/components/ui/form.tsx";
 import { Input } from "@/components/ui/input.tsx";
+import { ROUTES } from "@/lib/constants/routes.ts";
 import { useUser } from "@/lib/hooks";
-import { cn } from "@/lib/utils.ts";
+import { _path, cn } from "@/lib/utils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
@@ -180,7 +181,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 											<FormLabel>
 												<span className="font-normal">I agree to the</span>{" "}
 												<Link
-													to="/g/login"
+													to={_path(ROUTES.auth, ROUTES.login)}
 													className="underline">
 													terms and conditions
 												</Link>
