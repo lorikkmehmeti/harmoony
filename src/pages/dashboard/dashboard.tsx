@@ -19,7 +19,11 @@ export const Dashboard = () => {
 	};
 	return (
 		<div className="p-4">
-			<Button onClick={logOut}>Sign out</Button>
+			<Button
+				onClick={logOut}
+				className="font-mono">
+				Sign out
+			</Button>
 		</div>
 	);
 };

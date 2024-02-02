@@ -14,7 +14,7 @@ export const ProtectedRoute = ({
 	const user = useUser();
 
 	if (loggedInRoutes) {
-		return user ? children : <Navigate to={redirectTo ?? "/login"} />;
+		return user ? children : <Navigate to={redirectTo ?? "/g/login"} />;
 	}
 
 	return !user ? children : <Navigate to={redirectTo ?? "/dashboard"} />;
