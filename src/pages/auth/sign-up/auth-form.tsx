@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -169,15 +169,22 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 								control={form.control}
 								name="terms"
 								render={({ field }) => (
-									<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md py-4">
+									<FormItem className="flex flex-row items-center space-x-2 space-y-0 rounded-md py-4">
 										<FormControl>
 											<Checkbox
 												checked={field.value}
 												onCheckedChange={field.onChange}
 											/>
 										</FormControl>
-										<div className="space-y-1 leading-none">
-											<FormLabel>Accept terms and conditions</FormLabel>
+										<div className="space-y-1">
+											<FormLabel>
+												<span className="font-normal">I agree to the</span>{" "}
+												<Link
+													to="/g/login"
+													className="underline">
+													terms and conditions
+												</Link>
+											</FormLabel>
 										</div>
 									</FormItem>
 								)}

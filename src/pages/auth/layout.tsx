@@ -48,7 +48,7 @@ export const AuthLayout = () => {
 						strokeWidth="0"
 						fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"></rect>
 				</svg>
-				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border border-border p-3 backdrop-blur-[2px] max-lg:hidden md:p-10">
+				<div className="col-span-1 flex w-full flex-col items-center justify-center gap-5 border-r border-border p-3 backdrop-blur-[2px] max-lg:hidden md:p-10">
 					<div className="absolute inset-0 bg-white" />
 					<div className="relative z-20 flex items-center text-lg font-medium">
 						<svg

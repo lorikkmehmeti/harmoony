@@ -75,7 +75,8 @@ module.exports = {
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
 			fontFamily: {
-				inter: "'Inter var', sans-serif",
+				mono: "'Geist Mono', sans-serif",
+				sans: "'Geist Sans', sans-serif",
 			},
 		},
 	},
