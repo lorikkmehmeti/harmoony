@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button.tsx";
+import { Checkbox } from "@/components/ui/checkbox.tsx";
 import {
 	Form,
 	FormControl,
@@ -21,18 +22,6 @@ import { z } from "zod";
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
-	// first_name: z
-	// 	.string({
-	// 		required_error: "First name is required",
-	// 	})
-	// 	.min(1, { message: "First name is required" })
-	// 	.min(2, { message: "First name must be at least 2 characters" }),
-	// last_name: z
-	// 	.string({
-	// 		required_error: "Last name is required",
-	// 	})
-	// 	.min(1, { message: "Last name is required" })
-	// 	.min(2, { message: "Last name must be at least 2 characters" }),
 	email: z
 		.string()
 		.min(1, { message: "Email field is required" })
@@ -41,6 +30,9 @@ const formSchema = z.object({
 		.string()
 		.min(1, { message: "Password field is required" })
 		.min(8, { message: "Password must be at least 8 characters" }),
+	terms: z.literal(true, {
+		errorMap: () => ({ message: "Terms and conditions must be checked" }),
+	}),
 });
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
@@ -143,6 +135,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 										<FormLabel className="sr-only">Username</FormLabel>
 										<FormControl>
 											<Input
+												type="email"
 												autoComplete="off"
 												placeholder="Enter your email"
 												{...field}
@@ -169,6 +162,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 											/>
 										</FormControl>
 										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="terms"
+								render={({ field }) => (
+									<FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md py-4">
+										<FormControl>
+											<Checkbox
+												checked={field.value}
+												onCheckedChange={field.onChange}
+											/>
+										</FormControl>
+										<div className="space-y-1 leading-none">
+											<FormLabel>Accept terms and conditions</FormLabel>
+										</div>
 									</FormItem>
 								)}
 							/>

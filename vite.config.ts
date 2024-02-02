@@ -12,6 +12,9 @@ export default ({ mode }) => {
 				"@": path.resolve(__dirname, "./src"),
 			},
 		},
+		server: {
+			port: 3000,
+		},
 		envPrefix: "VITE",
 	});
 };

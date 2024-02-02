@@ -121,3 +121,7 @@ html,
 #root {
 	height: 100%;
 }
+
+* {
+	min-width: 0;
+}
