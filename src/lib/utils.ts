@@ -5,6 +5,4 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export const _path = (...args: string[]): string => {
-	return `/${args.join("/")}`;
-};
+export const _path = (...args: string[]): string => `/${args.join("/")}`;

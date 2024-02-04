@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button.tsx";
 
+import { ROUTES } from "@/lib/constants/routes.ts";
 import { useAuthContext } from "@/lib/hooks";
+import { _path } from "@/lib/utils.ts";
 import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
@@ -11,7 +13,7 @@ export const Dashboard = () => {
 		auth
 			.signOut()
 			.then(() => {
-				navigate("/g/login");
+				navigate(_path(ROUTES.auth, ROUTES.login));
 			})
 			.catch((err) => {
 				throw new Error(err);

@@ -14,27 +14,12 @@ import { Input } from "@/components/ui/input.tsx";
 import { ROUTES } from "@/lib/constants/routes.ts";
 import { useUser } from "@/lib/hooks";
 import { _path, cn } from "@/lib/utils.ts";
+import { UserAuthFormProps, formSchema } from "@/pages/auth/sign-up/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
-
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const formSchema = z.object({
-	email: z
-		.string()
-		.min(1, { message: "Email field is required" })
-		.email({ message: "Email is invalid" }),
-	password: z
-		.string()
-		.min(1, { message: "Password field is required" })
-		.min(8, { message: "Password must be at least 8 characters" }),
-	terms: z.literal(true, {
-		errorMap: () => ({ message: "Terms and conditions must be checked" }),
-	}),
-});
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const [isLoading, setLoading] = React.useState<boolean>(false);
@@ -138,7 +123,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 											<Input
 												type="email"
 												autoComplete="off"
-												placeholder="Enter your email"
+												placeholder="Enter your email address"
 												{...field}
 											/>
 										</FormControl>

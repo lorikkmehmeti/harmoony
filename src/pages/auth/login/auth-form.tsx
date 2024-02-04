@@ -11,29 +11,17 @@ import {
 } from "@/components/ui/form.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useAuthContext, useUser } from "@/lib/hooks";
-import { cn } from "@/lib/utils.ts";
+import { _path, cn } from "@/lib/utils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, ReloadIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 import { ROUTES } from "@/lib/constants/routes.ts";
+import { formSchema, UserAuthFormProps } from "@/pages/auth/login/utils";
 import { AuthTokenResponsePassword } from "@supabase/supabase-js";
 import { toast } from "sonner";
-
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const formSchema = z.object({
-	email: z
-		.string()
-		.min(1, { message: "Email field is required" })
-		.email({ message: "Email is invalid" }),
-	password: z
-		.string()
-		.min(1, { message: "Password field is required" })
-		.min(8, { message: "Password must be at least 8 characters" }),
-});
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const [isLoading, setLoading] = React.useState<boolean>(false);
@@ -45,7 +33,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			email: "",
+			email: "cavar20405@gosarlar.com",
 			password: "",
 		},
 		mode: "onSubmit",
@@ -74,8 +62,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 						});
 						return;
 					}
-					if (!user) window.location.reload();
-					else navigate(ROUTES.dashboard);
+					if (!user) {
+						window.location.reload();
+					} else {
+						const url = _path(ROUTES.dashboard);
+						navigate(url);
+					}
 				});
 		} catch (error) {
 			/* empty */
@@ -105,7 +97,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 												aria-label="email"
 												auto-fill="off"
 												autoComplete="off"
-												placeholder="Enter your email"
+												placeholder="Enter your email address"
 												{...field}
 											/>
 										</FormControl>
@@ -122,7 +114,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 										<FormControl>
 											<Input
 												type="password"
-												placeholder="••••••••"
+												placeholder="• • • • • • • • "
 												disabled={isLoading}
 												autoCapitalize="none"
 												autoComplete="password"
@@ -137,6 +129,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 						<Button
 							type="submit"
 							disabled={isLoading}>
+							{isLoading ? (
+								<ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+							) : null}
 							Continue
 						</Button>
 					</div>
