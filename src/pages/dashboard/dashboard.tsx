@@ -22,8 +22,8 @@ export const Dashboard = () => {
 	return (
 		<div className="p-4">
 			<Button
-				onClick={logOut}
-				className="font-mono">
+				size="sm"
+				onClick={logOut}>
 				Sign out
 			</Button>
 		</div>

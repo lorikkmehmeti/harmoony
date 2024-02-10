@@ -1,3 +1,4 @@
+import { ROUTES } from "@/lib/constants/routes.ts";
 import { AuthRoutes } from "@/pages/auth/routes";
 import { Dashboard } from "@/pages/dashboard/dashboard.tsx";
 import Landing from "@/pages/landing/landing.tsx";
@@ -16,8 +17,12 @@ export const routerRoutes = createBrowserRouter(
 				},
 				...AuthRoutes,
 				{
-					path: "/dashboard",
-					element: <ProtectedRoute children={<Dashboard />} />,
+					path: ROUTES.userLoggedIn,
+					element: (
+						<ProtectedRoute>
+							<Dashboard />
+						</ProtectedRoute>
+					),
 				},
 			],
 		},
