@@ -17,7 +17,7 @@ export const routerRoutes = createBrowserRouter(
 				},
 				...AuthRoutes,
 				{
-					path: ROUTES.userLoggedIn,
+					path: ROUTES.dashboard,
 					element: (
 						<ProtectedRoute>
 							<Dashboard />

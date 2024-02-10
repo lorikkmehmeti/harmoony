@@ -11,7 +11,7 @@ export const AuthRoutes: RouteObject[] = [
 		element: (
 			<ProtectedRoute
 				children={<AuthLayout />}
-				loggedInRoutes={false}
+				routes="loggedOut"
 			/>
 		),
 		children: [
