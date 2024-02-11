@@ -37,11 +37,14 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { SelectTrigger } from "@/components/ui/select.tsx";
+import { ROUTES } from "@/lib/constants/routes.ts";
+import { useAuthContext } from "@/lib/hooks";
 import { useTheme } from "@/lib/hooks/use-theme.ts";
-import { cn } from "@/lib/utils.ts";
+import { _path, cn } from "@/lib/utils.ts";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ScrollAreaViewport } from "@radix-ui/react-scroll-area";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const groups = [
 	{
@@ -97,7 +100,22 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 		groups[1].teams[3],
 	);
 
+	const auth = useAuthContext();
+
+	const navigate = useNavigate();
+
 	const { setTheme, theme } = useTheme();
+
+	const logOut = () => {
+		auth
+			.signOut()
+			.then(() => {
+				navigate(_path(ROUTES.auth, ROUTES.login));
+			})
+			.catch((err) => {
+				throw err;
+			});
+	};
 
 	return (
 		<Dialog
@@ -231,7 +249,9 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 									}}>
 									<span className="align-middle leading-4">Theme</span>
 								</CommandItem>
-								<CommandItem className="flex items-center py-2">
+								<CommandItem
+									className="flex items-center py-2"
+									onSelect={logOut}>
 									<span className="align-middle leading-4">Log out</span>
 								</CommandItem>
 							</CommandGroup>
