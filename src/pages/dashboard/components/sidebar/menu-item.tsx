@@ -143,11 +143,12 @@ export const Submenu: React.FC<{
 				<AccordionTrigger
 					className={cn(
 						"mb-1 mt-2 inline-flex flex-none justify-start rounded-sm border-none p-0.5 px-1 pr-2.5 text-xs text-muted-foreground outline-0 hover:bg-medium hover:no-underline focus-visible:bg-medium dark:hover:bg-light dark:focus-visible:bg-light",
-					)}>
-					<>
+					)}
+					asChild>
+					<div>
 						{item.icon ? item.icon : null}
 						<span className="leading-5">{item.name}</span>
-					</>
+					</div>
 				</AccordionTrigger>
 				<AccordionContent
 					asChild

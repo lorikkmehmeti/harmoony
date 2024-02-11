@@ -1,9 +1,21 @@
 import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion.tsx";
+import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover.tsx";
 import { cn } from "@/lib/utils.ts";
+import {
+	AccordionContentProps,
+	AccordionItemProps,
+	AccordionSingleProps,
+	AccordionTriggerProps,
+} from "@radix-ui/react-accordion";
 import {
 	PopoverContentProps,
 	PopoverProps,
@@ -82,6 +94,7 @@ type LinkHrefPropsType = MenuNamespacePropsType &
 type ButtonPropsType = MenuNamespacePropsType &
 	ButtonHTMLAttributes<HTMLButtonElement> & {
 		classNames?: string;
+		asChild?: boolean;
 	};
 
 export const Menu = ({ children }: MenuNamespacePropsType) => (
@@ -186,7 +199,9 @@ Menu.PopoverTrigger = function Trigger({
 	...props
 }: MenuPopoverTriggerProps) {
 	return (
-		<PopoverTrigger className={cn("group w-full", props.className)}>
+		<PopoverTrigger
+			className={cn("group w-full", props.className)}
+			{...props}>
 			{children}
 		</PopoverTrigger>
 	);
@@ -210,5 +225,80 @@ Menu.PopoverContent = function Content({
 			{...props}>
 			{children}
 		</PopoverContent>
+	);
+};
+type SubmenuPropsType = MenuNamespacePropsType &
+	AccordionSingleProps & {
+		id: string;
+	};
+
+Menu.Submenu = function Submenu({ children, id, ...props }: SubmenuPropsType) {
+	return (
+		<Accordion
+			id={id}
+			{...props}>
+			{children}
+		</Accordion>
+	);
+};
+
+type SubmenuItemType = MenuNamespacePropsType & AccordionItemProps;
+Menu.SubMenuItem = function SubmenuItem({
+	children,
+	...props
+}: SubmenuItemType) {
+	return (
+		<AccordionItem
+			{...props}
+			className={cn("border-none hover:no-underline", props.className)}>
+			{children}
+		</AccordionItem>
+	);
+};
+
+type SubmenuTriggerType = MenuNamespacePropsType & AccordionTriggerProps;
+Menu.SubmenuTrigger = function SubmenuTrigger({
+	children,
+	...props
+}: SubmenuTriggerType) {
+	return (
+		<AccordionTrigger
+			{...props}
+			className={cn(
+				"mb-1 mt-2 inline-flex flex-none justify-start rounded-sm border-none p-0.5 px-1 pr-2.5 text-xs text-muted-foreground outline-0 hover:bg-medium hover:no-underline focus-visible:bg-medium dark:hover:bg-light dark:focus-visible:bg-light",
+				props.className,
+			)}>
+			{children}
+		</AccordionTrigger>
+	);
+};
+
+type SubmenuTitleProps = MenuNamespacePropsType &
+	HTMLAttributes<HTMLSpanElement>;
+Menu.SubmenuTitle = function SubmenuTitle({
+	children,
+	...props
+}: SubmenuTitleProps) {
+	return (
+		<span
+			{...props}
+			className={cn("leading-5", props.className)}>
+			{children}
+		</span>
+	);
+};
+
+type SubmenuContentProps = MenuNamespacePropsType & AccordionContentProps;
+Menu.SubmenuContent = function SubmenuContent({
+	children,
+	...props
+}: SubmenuContentProps) {
+	return (
+		<AccordionContent
+			{...props}
+			className={cn("pb-0", props.className)}
+			asChild>
+			{children}
+		</AccordionContent>
 	);
 };

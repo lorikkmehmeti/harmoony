@@ -18,6 +18,7 @@ module.exports = {
 		},
 		extend: {
 			colors: {
+				"text-inverted": "var(--text-inverted)",
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",

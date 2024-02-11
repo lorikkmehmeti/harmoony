@@ -2,7 +2,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "@/pages/dashboard/components/sidebar/icons/icons.tsx";
+// import { ChevronRight } from "@/pages/dashboard/components/sidebar/icons/icons.tsx";
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -30,7 +30,7 @@ const AccordionTrigger = React.forwardRef<
 				className,
 			)}
 			{...props}>
-			<ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200" />
+			{/*<ChevronRight className="h-4 w-4 shrink-0 transition-transform duration-200" />*/}
 			{children}
 		</AccordionPrimitive.Trigger>
 	</AccordionPrimitive.Header>
