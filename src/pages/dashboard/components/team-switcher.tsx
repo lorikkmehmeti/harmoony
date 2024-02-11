@@ -20,7 +20,6 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 } from "@/components/ui/dialog.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Label } from "@/components/ui/label.tsx";
@@ -51,10 +50,10 @@ const groups = [
 		label: "Personal Account",
 		teams: [
 			{
-				label: "Alex Farell",
+				label: "Sara Landry",
 				value: "personal",
 				image:
-					"https://renderserver.craft.do/api/logo?type=u&colorIdx=3&caption=A",
+					"https://renderserver.craft.do/api/logo?type=u&colorIdx=8&caption=S",
 			},
 		],
 	},
@@ -213,35 +212,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 						<CommandSeparator />
 						<CommandList>
 							<CommandGroup>
-								<DialogTrigger asChild>
-									<CommandItem
-										onSelect={() => {
-											setOpen(false);
-											setShowNewTeamDialog(true);
-										}}
-										className="flex items-center py-2">
-										{/*<PlusCircledIcon className="mr-2 h-5 w-5" />*/}
-										<svg
-											className="mr-2 h-4 w-4 align-middle"
-											viewBox="0 0 24 24"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg">
-											<path
-												d="M12 8V16M16 12L8 12"
-												stroke="currentColor"
-												strokeWidth="1.5"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-											<path
-												d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
-												stroke="currentColor"
-												strokeWidth="1.5"
-											/>
-										</svg>
-										<span className="align-middle leading-4">Create team</span>
-									</CommandItem>
-								</DialogTrigger>
 								<CommandItem
 									className="flex items-center py-2"
 									onSelect={() => {

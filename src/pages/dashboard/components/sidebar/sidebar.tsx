@@ -70,7 +70,8 @@ export const Sidebar = memo(function Sidebar() {
 					<Menu.Submenu
 						type="single"
 						id="submenu-1"
-						collapsible>
+						collapsible
+						defaultValue={open?.length ? "submenu-1" : ""}>
 						<Menu.SubMenuItem value="submenu-1">
 							<Menu.SubmenuTrigger className="px-2">
 								<ChevronRight className="mr-1 h-4 w-4 shrink-0 transition-transform duration-200" />
@@ -79,10 +80,7 @@ export const Sidebar = memo(function Sidebar() {
 							<Menu.SubmenuContent>
 								<Menu.Item>
 									<Menu.Popover
-										open={
-											state?.open === "notifications" ||
-											open === "notifications"
-										}
+										open={state?.open === "inbox" || open === "inbox"}
 										onOpenChange={(event) => {
 											if (!event) {
 												navigate(pathname);
@@ -93,8 +91,8 @@ export const Sidebar = memo(function Sidebar() {
 											asChild>
 											<div>
 												<Menu.Link
-													to={`?open=notifications`}
-													state={{ open: "notifications" }}
+													to={`?open=inbox`}
+													state={{ open: "inbox" }}
 													preventScrollReset={true}>
 													<Menu.Button className="group-data-[state=open]:border group-data-[state=open]:border-input group-data-[state=open]:bg-medium dark:group-data-[state=open]:border-transparent dark:group-data-[state=open]:bg-light">
 														<Menu.Icon>{Icons.Inbox}</Menu.Icon>
