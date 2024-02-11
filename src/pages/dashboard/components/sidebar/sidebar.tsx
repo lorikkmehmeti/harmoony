@@ -7,20 +7,11 @@ import {
 	TabsTrigger,
 } from "@/components/ui/tabs.tsx";
 import { Menu } from "@/pages/dashboard/components/menu/menu.tsx";
-import { NAVIGATION } from "@/pages/dashboard/components/sidebar/helpers/navigation-data.ts";
-import {
-	CameraIcon,
-	DocumentIcon,
-	RecordIcon,
-	TeamCloudIcon,
-	TimesheetIcon,
-	TrashIcon,
-} from "@/pages/dashboard/components/sidebar/icons/icons.ts";
 import { Icons } from "@/pages/dashboard/components/sidebar/icons/sidebar-icons.tsx";
-import {
-	MenuItem,
-	Submenu,
-} from "@/pages/dashboard/components/sidebar/menu-item.tsx";
+// import {
+// 	Submenu,
+// } from "@/pages/dashboard/components/sidebar/menu-item.tsx";
+import { NAVIGATION } from "@/pages/dashboard/components/sidebar/helpers/navigation-data.ts";
 import { ScrollAreaViewport } from "@radix-ui/react-scroll-area";
 import { memo } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -37,10 +28,33 @@ export const Sidebar = memo(function Sidebar() {
 				<ul className="mt-0">
 					<Menu>
 						<Menu.Item>
-							<Menu.NavLink to="dashboard">
-								<Menu.Icon>{Icons.Flow}</Menu.Icon>
-								<Menu.Title>Title</Menu.Title>
-								<Menu.KeyboardSlot keyboardKey="⌘K" />
+							<Menu.NavLink to={NAVIGATION["TASKS"].to}>
+								<Menu.Icon>{NAVIGATION["TASKS"].icon}</Menu.Icon>
+								<Menu.Title>{NAVIGATION["TASKS"].name}</Menu.Title>
+							</Menu.NavLink>
+						</Menu.Item>
+						<Menu.Item>
+							<Menu.NavLink to={NAVIGATION["NOTES"].to}>
+								<Menu.Icon>{NAVIGATION["NOTES"].icon}</Menu.Icon>
+								<Menu.Title>{NAVIGATION["NOTES"].name}</Menu.Title>
+							</Menu.NavLink>
+						</Menu.Item>
+						<Menu.Item>
+							<Menu.NavLink to={NAVIGATION["SPRINT"].to}>
+								<Menu.Icon>{NAVIGATION["SPRINT"].icon}</Menu.Icon>
+								<Menu.Title>{NAVIGATION["SPRINT"].name}</Menu.Title>
+							</Menu.NavLink>
+						</Menu.Item>
+						<Menu.Item>
+							<Menu.NavLink to={NAVIGATION["REPORTS"].to}>
+								<Menu.Icon>{NAVIGATION["REPORTS"].icon}</Menu.Icon>
+								<Menu.Title>{NAVIGATION["REPORTS"].name}</Menu.Title>
+							</Menu.NavLink>
+						</Menu.Item>
+						<Menu.Item>
+							<Menu.NavLink to={NAVIGATION["AUTOMATIONS"].to}>
+								<Menu.Icon>{NAVIGATION["AUTOMATIONS"].icon}</Menu.Icon>
+								<Menu.Title>{NAVIGATION["AUTOMATIONS"].name}</Menu.Title>
 							</Menu.NavLink>
 						</Menu.Item>
 					</Menu>
@@ -113,79 +127,64 @@ export const Sidebar = memo(function Sidebar() {
 							</Menu.Popover>
 						</Menu.Item>
 					</Menu>
-					{NAVIGATION &&
-						NAVIGATION.map((link, index) => (
-							<li
-								key={index}
-								className="my-[1px]">
-								<MenuItem
-									type="button"
-									item={link}
-								/>
-								{/*<MenuTrigger.Link></MenuTrigger.Link>*/}
-								{/*<MenuTrigger.Button></MenuTrigger.Button>*/}
-								{/*<MenuTrigger.Popover></MenuTrigger.Popover>*/}
-								{/*<MenuTrigger.Dialog></MenuTrigger.Dialog>*/}
-							</li>
-						))}
 				</ul>
 
-				<Submenu
-					item={{
-						id: 293489234,
-						name: "Cloud",
-						onClick: () => {},
-						children: [
-							{
-								id: 9798234,
-								name: "Team Cloud",
-								icon: <TeamCloudIcon />,
-								to: "archived",
-							},
-							{
-								id: 894856945,
-								name: "Space Recordings",
-								icon: <RecordIcon />,
-								onClick: () => {},
-							},
-							{
-								id: 2342345555,
-								name: "Space Snapshots",
-								icon: <CameraIcon />,
-								to: "archived",
-							},
-							{
-								id: 398475,
-								name: "Trash",
-								icon: <TrashIcon />,
-								to: "archived",
-							},
-						],
-					}}
-				/>
+				{/*<Submenu*/}
+				{/*	item={{*/}
+				{/*		id: 293489234,*/}
+				{/*		name: "Cloud",*/}
+				{/*		onClick: () => {},*/}
+				{/*		children: [*/}
+				{/*			{*/}
+				{/*				id: 9798234,*/}
+				{/*				name: "Team Cloud",*/}
+				{/*				icon: <TeamCloudIcon />,*/}
+				{/*				to: "archived",*/}
+				{/*			},*/}
+				{/*			{*/}
+				{/*				id: 894856945,*/}
+				{/*				name: "Space Recordings",*/}
+				{/*				icon: <RecordIcon />,*/}
+				{/*				onClick: () => {},*/}
+				{/*			},*/}
+				{/*			{*/}
+				{/*				id: 2342345555,*/}
+				{/*				name: "Space Snapshots",*/}
+				{/*				icon: <CameraIcon />,*/}
+				{/*				to: "archived",*/}
+				{/*			},*/}
+				{/*			{*/}
+				{/*				id: 398475,*/}
+				{/*				name: "Trash",*/}
+				{/*				icon: <TrashIcon />,*/}
+				{/*				to: "archived",*/}
+				{/*			},*/}
+				{/*		],*/}
+				{/*	}}*/}
+				{/*/>*/}
 
-				<Submenu
-					opened={true}
-					item={{
-						id: 293489234,
-						name: "Time Tracking",
-						onClick: () => {},
-						children: [
-							{
-								id: 9798234,
-								name: "Documents",
-								icon: <DocumentIcon />,
-								to: "archived",
-							},
-							{
-								id: 894856945,
-								name: "Timesheet",
-								icon: <TimesheetIcon />,
-								to: "archived",
-							},
-						],
-					}}
-				/>
+				{/*<Submenu*/}
+				{/*	opened={true}*/}
+				{/*	item={{*/}
+				{/*		id: 293489234,*/}
+				{/*		name: "Time Tracking",*/}
+				{/*		onClick: () => {},*/}
+				{/*		children: [*/}
+				{/*			{*/}
+				{/*				id: 9798234,*/}
+				{/*				name: "Documents",*/}
+				{/*				icon: <DocumentIcon />,*/}
+				{/*				to: "archived",*/}
+				{/*			},*/}
+				{/*			{*/}
+				{/*				id: 894856945,*/}
+				{/*				name: "Timesheet",*/}
+				{/*				icon: <TimesheetIcon />,*/}
+				{/*				to: "archived",*/}
+				{/*			},*/}
+				{/*		],*/}
+				{/*	}}*/}
+				{/*/>*/}
 			</ScrollAreaViewport>
 		</ScrollArea>
 	);

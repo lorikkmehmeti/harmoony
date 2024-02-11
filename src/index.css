@@ -90,7 +90,9 @@ html,
 	font-variant: tabular-nums;
 }
 
-* {
+form,
+input,
+textarea {
 	min-width: 0;
 }
 
