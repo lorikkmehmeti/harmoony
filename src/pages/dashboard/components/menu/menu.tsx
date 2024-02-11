@@ -75,33 +75,33 @@ const link = cva(
 	},
 );
 
-type MenuNamespacePropsType = {
+type ChildrenProps = {
 	children?: React.ReactNode;
 };
 
-type LinkPropsType = MenuNamespacePropsType &
+type MenuLinkProps = ChildrenProps &
 	NavLinkProps &
 	React.RefAttributes<HTMLAnchorElement> & {
 		to: string;
 	};
 
-type LinkHrefPropsType = MenuNamespacePropsType &
+type MenuLinkHrefProps = ChildrenProps &
 	LinkProps &
 	React.RefAttributes<HTMLAnchorElement> & {
 		to: string;
 	};
 
-type ButtonPropsType = MenuNamespacePropsType &
+type MenuButtonProps = ChildrenProps &
 	ButtonHTMLAttributes<HTMLButtonElement> & {
 		classNames?: string;
 		asChild?: boolean;
 	};
 
-export const Menu = ({ children }: MenuNamespacePropsType) => (
+export const Menu = ({ children }: ChildrenProps) => (
 	<React.Fragment>{children}</React.Fragment>
 );
 
-Menu.Item = function Item({ children }: MenuNamespacePropsType) {
+Menu.Item = function Item({ children }: ChildrenProps) {
 	return <React.Fragment>{children}</React.Fragment>;
 };
 
@@ -109,7 +109,7 @@ Menu.Title = function Title({
 	children,
 	className,
 	...props
-}: MenuNamespacePropsType & HTMLAttributes<HTMLSpanElement>) {
+}: ChildrenProps & HTMLAttributes<HTMLSpanElement>) {
 	return (
 		<span
 			className={cn("mr-auto inline-flex self-center", className)}
@@ -119,7 +119,7 @@ Menu.Title = function Title({
 	);
 };
 
-Menu.Link = function MenuLink({ to, children, ...props }: LinkHrefPropsType) {
+Menu.Link = function MenuLink({ to, children, ...props }: MenuLinkHrefProps) {
 	return (
 		<Link
 			to={to}
@@ -130,7 +130,7 @@ Menu.Link = function MenuLink({ to, children, ...props }: LinkHrefPropsType) {
 	);
 };
 
-Menu.NavLink = function MenuNavLink({ to, children, ...props }: LinkPropsType) {
+Menu.NavLink = function MenuNavLink({ to, children, ...props }: MenuLinkProps) {
 	return (
 		<NavLink
 			to={to}
@@ -144,7 +144,7 @@ Menu.NavLink = function MenuNavLink({ to, children, ...props }: LinkPropsType) {
 	);
 };
 
-Menu.Icon = function Icon({ children }: MenuNamespacePropsType) {
+Menu.Icon = function Icon({ children }: ChildrenProps) {
 	return children;
 };
 
@@ -152,7 +152,7 @@ Menu.Button = function Button({
 	children,
 	className,
 	...props
-}: ButtonPropsType) {
+}: MenuButtonProps) {
 	const buttonClassName = cn(link({ state: "normal" }), className);
 	return (
 		<button
@@ -163,7 +163,7 @@ Menu.Button = function Button({
 	);
 };
 
-type KeyboardPropTypes = HTMLAttributes<HTMLSpanElement> & {
+type MenuKeyboardProps = HTMLAttributes<HTMLSpanElement> & {
 	keyboardKey: string;
 };
 
@@ -175,7 +175,7 @@ Menu.KeyboardSlot = function Keyboard({
 	className,
 	keyboardKey,
 	...props
-}: KeyboardPropTypes) {
+}: MenuKeyboardProps) {
 	if (!keyboardKey) throw new Error("Keyboard key need to be initialized");
 	return (
 		<span
@@ -186,13 +186,13 @@ Menu.KeyboardSlot = function Keyboard({
 	);
 };
 
-type PopoverItemProps = PopoverProps & MenuNamespacePropsType;
+type MenuPopoverProps = PopoverProps & ChildrenProps;
 
-Menu.Popover = function MenuPopover({ children, ...props }: PopoverItemProps) {
+Menu.Popover = function MenuPopover({ children, ...props }: MenuPopoverProps) {
 	return <Popover {...props}>{children}</Popover>;
 };
 
-type MenuPopoverTriggerProps = MenuNamespacePropsType & PopoverTriggerProps;
+type MenuPopoverTriggerProps = ChildrenProps & PopoverTriggerProps;
 
 Menu.PopoverTrigger = function Trigger({
 	children,
@@ -207,12 +207,12 @@ Menu.PopoverTrigger = function Trigger({
 	);
 };
 
-type PopoverContentPropsType = MenuNamespacePropsType & PopoverContentProps;
+type MenuPopoverContentProps = ChildrenProps & PopoverContentProps;
 
 Menu.PopoverContent = function Content({
 	children,
 	...props
-}: PopoverContentPropsType) {
+}: MenuPopoverContentProps) {
 	return (
 		<PopoverContent
 			side="right"
@@ -227,7 +227,7 @@ Menu.PopoverContent = function Content({
 		</PopoverContent>
 	);
 };
-type SubmenuPropsType = MenuNamespacePropsType &
+type SubmenuPropsType = ChildrenProps &
 	AccordionSingleProps & {
 		id: string;
 	};
@@ -242,11 +242,11 @@ Menu.Submenu = function Submenu({ children, id, ...props }: SubmenuPropsType) {
 	);
 };
 
-type SubmenuItemType = MenuNamespacePropsType & AccordionItemProps;
+type MenuSubmenuItemProps = ChildrenProps & AccordionItemProps;
 Menu.SubMenuItem = function SubmenuItem({
 	children,
 	...props
-}: SubmenuItemType) {
+}: MenuSubmenuItemProps) {
 	return (
 		<AccordionItem
 			{...props}
@@ -256,11 +256,11 @@ Menu.SubMenuItem = function SubmenuItem({
 	);
 };
 
-type SubmenuTriggerType = MenuNamespacePropsType & AccordionTriggerProps;
+type MenuSubmenuTriggerProps = ChildrenProps & AccordionTriggerProps;
 Menu.SubmenuTrigger = function SubmenuTrigger({
 	children,
 	...props
-}: SubmenuTriggerType) {
+}: MenuSubmenuTriggerProps) {
 	return (
 		<AccordionTrigger
 			{...props}
@@ -273,12 +273,11 @@ Menu.SubmenuTrigger = function SubmenuTrigger({
 	);
 };
 
-type SubmenuTitleProps = MenuNamespacePropsType &
-	HTMLAttributes<HTMLSpanElement>;
+type MenuSubmenuTitleProps = ChildrenProps & HTMLAttributes<HTMLSpanElement>;
 Menu.SubmenuTitle = function SubmenuTitle({
 	children,
 	...props
-}: SubmenuTitleProps) {
+}: MenuSubmenuTitleProps) {
 	return (
 		<span
 			{...props}
@@ -288,11 +287,11 @@ Menu.SubmenuTitle = function SubmenuTitle({
 	);
 };
 
-type SubmenuContentProps = MenuNamespacePropsType & AccordionContentProps;
+type MenuSubmenuContentProps = ChildrenProps & AccordionContentProps;
 Menu.SubmenuContent = function SubmenuContent({
 	children,
 	...props
-}: SubmenuContentProps) {
+}: MenuSubmenuContentProps) {
 	return (
 		<AccordionContent
 			{...props}

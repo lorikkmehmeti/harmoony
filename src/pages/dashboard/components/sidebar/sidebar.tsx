@@ -99,7 +99,7 @@ export const Sidebar = memo(function Sidebar() {
 													<Menu.Button className="group-data-[state=open]:border group-data-[state=open]:border-input group-data-[state=open]:bg-medium dark:group-data-[state=open]:border-transparent dark:group-data-[state=open]:bg-light">
 														<Menu.Icon>{Icons.Inbox}</Menu.Icon>
 														<Menu.Title>Inbox</Menu.Title>
-														<Menu.KeyboardSlot keyboardKey="⌘N" />
+														{/*<Menu.KeyboardSlot keyboardKey="⌘N" />*/}
 													</Menu.Button>
 												</Menu.Link>
 											</div>

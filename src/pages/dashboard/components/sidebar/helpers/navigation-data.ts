@@ -17,7 +17,7 @@ export const NAVIGATION = {
 	},
 	SPRINT: {
 		id: 23422,
-		name: "Active sprint",
+		name: "Backlog",
 		to: "projects",
 		active: false,
 		icon: Icons.Project,
