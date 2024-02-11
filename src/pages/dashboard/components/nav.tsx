@@ -34,7 +34,9 @@ export function Nav() {
 			.then(() => {
 				navigate("/login");
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				throw err;
+			});
 	};
 	// const { setTheme, theme } = useTheme();
 	return (
