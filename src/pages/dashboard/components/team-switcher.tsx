@@ -37,6 +37,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { SelectTrigger } from "@/components/ui/select.tsx";
+import { useTheme } from "@/lib/hooks/use-theme.ts";
 import { cn } from "@/lib/utils.ts";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ScrollAreaViewport } from "@radix-ui/react-scroll-area";
@@ -95,6 +96,8 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 	const [selectedTeam, setSelectedTeam] = React.useState<Team>(
 		groups[1].teams[3],
 	);
+
+	const { setTheme, theme } = useTheme();
 
 	return (
 		<Dialog
@@ -221,8 +224,12 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 										<span className="align-middle leading-4">Create team</span>
 									</CommandItem>
 								</DialogTrigger>
-								<CommandItem className="flex items-center py-2">
-									<span className="align-middle leading-4">Settings</span>
+								<CommandItem
+									className="flex items-center py-2"
+									onSelect={() => {
+										setTheme(theme === "dark" ? "light" : "dark");
+									}}>
+									<span className="align-middle leading-4">Theme</span>
 								</CommandItem>
 								<CommandItem className="flex items-center py-2">
 									<span className="align-middle leading-4">Log out</span>

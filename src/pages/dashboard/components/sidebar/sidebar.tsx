@@ -22,7 +22,7 @@ import {
 	Submenu,
 } from "@/pages/dashboard/components/sidebar/menu-item.tsx";
 import { ScrollAreaViewport } from "@radix-ui/react-scroll-area";
-import { memo, useId } from "react";
+import { memo } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 export const Sidebar = memo(function Sidebar() {
@@ -31,8 +31,6 @@ export const Sidebar = memo(function Sidebar() {
 	const [searchParams] = useSearchParams();
 
 	const open = searchParams.get("open");
-
-	console.log(state?.open, open);
 	return (
 		<ScrollArea className="h-full">
 			<ScrollAreaViewport className="h-full px-2 py-1">
@@ -49,8 +47,8 @@ export const Sidebar = memo(function Sidebar() {
 					<Menu>
 						<Menu.Item>
 							<Menu.Button>
-								<Menu.Icon>{Icons.Flow}</Menu.Icon>
-								<Menu.Title>Title</Menu.Title>
+								<Menu.Icon>{Icons.TeamCloud}</Menu.Icon>
+								<Menu.Title>Flow</Menu.Title>
 								<Menu.KeyboardSlot keyboardKey="⌘K" />
 							</Menu.Button>
 						</Menu.Item>
@@ -66,19 +64,20 @@ export const Sidebar = memo(function Sidebar() {
 										navigate(pathname);
 									}
 								}}>
-								<Menu.PopoverTrigger classNames="w-full group">
+								<Menu.PopoverTrigger className="group w-full">
 									<Menu.Link
 										to={`?open=notifications`}
 										state={{ open: "notifications" }}
 										preventScrollReset={true}>
-										<Menu.Button classNames="group-data-[state=open]:bg-medium dark:group-data-[state=open]:bg-light group-data-[state=open]:border group-data-[state=open]:border-input dark:group-data-[state=open]:border-transparent">
+										<Menu.Button className="group-data-[state=open]:border group-data-[state=open]:border-input group-data-[state=open]:bg-medium dark:group-data-[state=open]:border-transparent dark:group-data-[state=open]:bg-light">
 											<Menu.Icon>{Icons.Inbox}</Menu.Icon>
 											<Menu.Title>Inbox</Menu.Title>
-											<Menu.KeyboardSlot keyboardKey="⌘K" />
+											<Menu.KeyboardSlot keyboardKey="⌘N" />
 										</Menu.Button>
 									</Menu.Link>
 								</Menu.PopoverTrigger>
 								<Menu.PopoverContent side="right">
+									{/*TODO refactor this to a new component*/}
 									<Tabs
 										defaultValue="unread-notifications"
 										className="w-full">
@@ -115,10 +114,10 @@ export const Sidebar = memo(function Sidebar() {
 						</Menu.Item>
 					</Menu>
 					{NAVIGATION &&
-						NAVIGATION.map((link) => (
+						NAVIGATION.map((link, index) => (
 							<li
-								className="my-[1px]"
-								key={useId()}>
+								key={index}
+								className="my-[1px]">
 								<MenuItem
 									type="button"
 									item={link}
@@ -147,9 +146,7 @@ export const Sidebar = memo(function Sidebar() {
 								id: 894856945,
 								name: "Space Recordings",
 								icon: <RecordIcon />,
-								onClick: () => {
-									console.log("hmmmmmmm");
-								},
+								onClick: () => {},
 							},
 							{
 								id: 2342345555,

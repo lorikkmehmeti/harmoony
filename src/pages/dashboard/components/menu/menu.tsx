@@ -10,7 +10,7 @@ import {
 	PopoverTriggerProps,
 } from "@radix-ui/react-popover";
 import { cva } from "class-variance-authority";
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, HTMLAttributes } from "react";
 import { Link, LinkProps, NavLink, NavLinkProps } from "react-router-dom";
 
 const link = cva(
@@ -67,22 +67,16 @@ type MenuNamespacePropsType = {
 	children?: React.ReactNode;
 };
 
-type ClassNamesPropType = {
-	classNames: string;
-};
-
 type LinkPropsType = MenuNamespacePropsType &
 	NavLinkProps &
 	React.RefAttributes<HTMLAnchorElement> & {
 		to: string;
-		classNames?: string;
 	};
 
 type LinkHrefPropsType = MenuNamespacePropsType &
 	LinkProps &
 	React.RefAttributes<HTMLAnchorElement> & {
 		to: string;
-		classNames?: string;
 	};
 
 type ButtonPropsType = MenuNamespacePropsType &
@@ -98,38 +92,38 @@ Menu.Item = function Item({ children }: MenuNamespacePropsType) {
 	return <React.Fragment>{children}</React.Fragment>;
 };
 
-Menu.Title = function Title({ children }: MenuNamespacePropsType) {
-	return <span className="mr-auto inline-flex self-center">{children}</span>;
+Menu.Title = function Title({
+	children,
+	className,
+	...props
+}: MenuNamespacePropsType & HTMLAttributes<HTMLSpanElement>) {
+	return (
+		<span
+			className={cn("mr-auto inline-flex self-center", className)}
+			{...props}>
+			{children}
+		</span>
+	);
 };
 
-Menu.Link = function MenuLink({
-	to,
-	children,
-	classNames,
-	...props
-}: LinkHrefPropsType) {
+Menu.Link = function MenuLink({ to, children, ...props }: LinkHrefPropsType) {
 	return (
 		<Link
 			to={to}
 			{...props}
-			className={cn("focus-visible:outline-0", classNames)}>
+			className={cn("focus-visible:outline-0", props.className)}>
 			{children}
 		</Link>
 	);
 };
 
-Menu.NavLink = function MenuNavLink({
-	to,
-	children,
-	classNames,
-	...props
-}: LinkPropsType) {
+Menu.NavLink = function MenuNavLink({ to, children, ...props }: LinkPropsType) {
 	return (
 		<NavLink
 			to={to}
 			end
 			className={({ isActive }) =>
-				cn(link({ state: isActive ? "active" : "normal" }), classNames)
+				cn(link({ state: isActive ? "active" : "normal" }), props.className)
 			}
 			{...props}>
 			{children}
@@ -142,23 +136,21 @@ Menu.Icon = function Icon({ children }: MenuNamespacePropsType) {
 };
 
 Menu.Button = function Button({
-	classNames,
 	children,
+	className,
 	...props
 }: ButtonPropsType) {
-	const buttonClassName = cn(link({ state: "normal" }), classNames);
+	const buttonClassName = cn(link({ state: "normal" }), className);
 	return (
 		<button
 			className={buttonClassName}
 			{...props}>
-			{" "}
 			{children}
 		</button>
 	);
 };
 
-type KeyboardPropTypes = {
-	classNames?: Array<string>;
+type KeyboardPropTypes = HTMLAttributes<HTMLSpanElement> & {
 	keyboardKey: string;
 };
 
@@ -167,12 +159,17 @@ const KeyboardClasses = cva(
 );
 
 Menu.KeyboardSlot = function Keyboard({
-	classNames,
+	className,
 	keyboardKey,
+	...props
 }: KeyboardPropTypes) {
 	if (!keyboardKey) throw new Error("Keyboard key need to be initialized");
 	return (
-		<span className={cn(KeyboardClasses(), classNames)}>{keyboardKey}</span>
+		<span
+			className={cn(KeyboardClasses(), className)}
+			{...props}>
+			{keyboardKey}
+		</span>
 	);
 };
 
@@ -182,27 +179,22 @@ Menu.Popover = function MenuPopover({ children, ...props }: PopoverItemProps) {
 	return <Popover {...props}>{children}</Popover>;
 };
 
-type MenuPopoverTriggerProps = MenuNamespacePropsType &
-	Partial<ClassNamesPropType> &
-	PopoverTriggerProps;
+type MenuPopoverTriggerProps = MenuNamespacePropsType & PopoverTriggerProps;
 
 Menu.PopoverTrigger = function Trigger({
-	classNames,
 	children,
+	...props
 }: MenuPopoverTriggerProps) {
 	return (
-		<PopoverTrigger className={cn("group w-full", classNames)}>
+		<PopoverTrigger className={cn("group w-full", props.className)}>
 			{children}
 		</PopoverTrigger>
 	);
 };
 
-type PopoverContentPropsType = Partial<ClassNamesPropType> &
-	MenuNamespacePropsType &
-	PopoverContentProps;
+type PopoverContentPropsType = MenuNamespacePropsType & PopoverContentProps;
 
 Menu.PopoverContent = function Content({
-	classNames,
 	children,
 	...props
 }: PopoverContentPropsType) {
@@ -213,7 +205,7 @@ Menu.PopoverContent = function Content({
 			align="start"
 			className={cn(
 				"min-h-[500px] min-w-[350px] border border-accent p-2 py-2 text-sm text-muted-foreground shadow",
-				classNames,
+				props.className,
 			)}
 			{...props}>
 			{children}

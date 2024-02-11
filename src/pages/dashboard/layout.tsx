@@ -54,7 +54,7 @@ const Layout = () => {
 											type="link"
 											item={{
 												id: 345345345,
-												name: "Version 0.0.1",
+												name: `Version ${import.meta.env.VITE_VERSION}`,
 												icon: <AppVersionIcon />,
 												onClick: () => {},
 											}}
