@@ -10,6 +10,7 @@ import {
 	DocumentIcon,
 	EnergyIcon,
 	Flow,
+	GroupIcon,
 	HelpIcon,
 	HomeIcon,
 	InboxIcon,
@@ -18,6 +19,7 @@ import {
 	ListIcon,
 	Notes,
 	NotificationIcon,
+	OrganizationalIcon,
 	ProjectIcon,
 	Record,
 	Reports,
@@ -63,7 +65,11 @@ const CalendarTimeOffIconWithClasses = withCustomClasses(
 	className,
 );
 const CommunityIconWithClasses = withCustomClasses(CommunityIcon, className);
-
+const GroupIconWithClasses = withCustomClasses(GroupIcon, className);
+const OrganizationalIconWithClasses = withCustomClasses(
+	OrganizationalIcon,
+	className,
+);
 export {
 	AppVersionIconWithClasses as AppVersionIcon,
 	ArchiveIconWithClasses as ArchiveIcon,
@@ -75,6 +81,7 @@ export {
 	DocumentIconWithClasses as DocumentIcon,
 	EnergyIconWithClasses as EnergyIcon,
 	FlowIconWithClasses as FlowIcon,
+	GroupIconWithClasses as GroupIcon,
 	HelpIconWithClasses as HelpIcon,
 	HomeIconWithClasses as HomeIcon,
 	InboxIconWithClasses as InboxIcon,
@@ -83,6 +90,7 @@ export {
 	ListIconWithClasses as ListIcon,
 	NotesIconWithClasses as NotesIcon,
 	NotificationIconWithClasses as NotificationIcon,
+	OrganizationalIconWithClasses as OrganizationalIcon,
 	ProjectIconWithClasses as ProjectIcon,
 	RecordIconWithClasses as RecordIcon,
 	ReportsIconWithClasses as ReportsIcon,

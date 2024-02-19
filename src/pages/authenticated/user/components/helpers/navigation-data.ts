@@ -39,48 +39,19 @@ export const NAVIGATION: Navigation = {
 		to: _path(ROUTES.user, "time-off"),
 		icon: Icons.TimeOff,
 	},
-	AUTOMATIONS: {
-		id: 120938012876,
-		name: "Automations",
-		icon: Icons.Flow,
-		to: "/projects/archived",
-	},
 };
 
-export const NAVIGATIONd = [
-	{
-		id: 2333,
-		name: "Tasks",
-		active: false,
-		to: "/my-work",
-		icon: Icons.Tasks,
+export const ORGANIZATION: Navigation = {
+	PEOPLE: {
+		id: 9847593495,
+		name: "People",
+		to: _path(ROUTES.user, "calendar"),
+		icon: Icons.Group,
 	},
-	{
-		id: 22223333332,
-		name: "Notes",
-		to: "/issues",
-		active: false,
-		icon: Icons.Notes,
+	CLUB_VIEW: {
+		id: 239809234,
+		name: "Club View",
+		to: _path(ROUTES.user),
+		icon: Icons.Organizational,
 	},
-	{
-		id: 23422,
-		name: "Active sprint",
-		to: "projects",
-		active: false,
-		icon: Icons.Project,
-	},
-	{
-		id: 2394290340234,
-		name: "Reports",
-		active: false,
-		to: "/projects/current",
-		icon: Icons.Reports,
-	},
-	{
-		id: 120938012876,
-		name: "Automations",
-		active: false,
-		icon: Icons.Flow,
-		to: "/projects/archived",
-	},
-];
+};

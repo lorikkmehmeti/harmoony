@@ -3,9 +3,11 @@ import {
 	CalendarTimeOffIcon,
 	CommunityIcon,
 	FlowIcon,
+	GroupIcon,
 	InboxIcon,
 	NotesIcon,
 	NotificationIcon,
+	OrganizationalIcon,
 	ProjectIcon,
 	ReportsIcon,
 	TasksIcon,
@@ -25,4 +27,6 @@ export const Icons = {
 	Calendar: <CalendarIcon />,
 	TimeOff: <CalendarTimeOffIcon />,
 	Community: <CommunityIcon />,
+	Group: <GroupIcon />,
+	Organizational: <OrganizationalIcon />,
 };
