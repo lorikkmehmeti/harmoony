@@ -1,4 +1,4 @@
-import { Nav } from "@/pages/dashboard/components/nav.tsx";
+import { Nav } from "@/pages/authenticated/components/nav.tsx";
 
 export function Header() {
 	return (

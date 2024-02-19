@@ -3,14 +3,14 @@ import {
 	ResizablePanel,
 	ResizablePanelGroup,
 } from "@/components/ui/resizable.tsx";
-import { Search } from "@/pages/dashboard/components/search.tsx";
+import { Search } from "@/pages/authenticated/components/search.tsx";
 import {
 	AppVersionIcon,
 	InviteUser,
-} from "@/pages/dashboard/components/sidebar/icons/icons.ts";
-import { MenuItem } from "@/pages/dashboard/components/sidebar/menu-item.tsx";
-import { Sidebar } from "@/pages/dashboard/components/sidebar/sidebar.tsx";
-import TeamSwitcher from "@/pages/dashboard/components/team-switcher.tsx";
+} from "@/pages/authenticated/components/sidebar/icons/icons.ts";
+import { MenuItem } from "@/pages/authenticated/components/sidebar/menu-item.tsx";
+import { Sidebar } from "@/pages/authenticated/components/sidebar/sidebar.tsx";
+import TeamSwitcher from "@/pages/authenticated/components/team-switcher.tsx";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {

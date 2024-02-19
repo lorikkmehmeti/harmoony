@@ -1,4 +1,4 @@
-import { NotificationIcon } from "@/pages/dashboard/components/sidebar/icons/icons.tsx";
+import { NotificationIcon } from "@/pages/authenticated/components/sidebar/icons/icons.tsx";
 import React from "react";
 
 interface EmptyStateProps {

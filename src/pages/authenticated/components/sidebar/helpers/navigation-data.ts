@@ -1,11 +1,11 @@
-import { Icons } from "@/pages/dashboard/components/sidebar/icons/sidebar-icons.tsx";
+import { Icons } from "@/pages/authenticated/components/sidebar/icons/sidebar-icons.tsx";
 
 export const NAVIGATION = {
 	TASKS: {
 		id: 2333,
 		name: "Tasks",
 		active: false,
-		to: "/my-work",
+		to: "/dashboard",
 		icon: Icons.Tasks,
 	},
 	NOTES: {

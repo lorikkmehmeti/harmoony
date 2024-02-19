@@ -133,7 +133,7 @@ Menu.Link = function MenuLink({ to, children, ...props }: MenuLinkHrefProps) {
 Menu.NavLink = function MenuNavLink({ to, children, ...props }: MenuLinkProps) {
 	return (
 		<NavLink
-			to={to}
+			to={`${to}/`}
 			end
 			className={({ isActive }) =>
 				cn(link({ state: isActive ? "active" : "normal" }), props.className)
@@ -256,7 +256,10 @@ Menu.SubMenuItem = function SubmenuItem({
 	);
 };
 
-type MenuSubmenuTriggerProps = ChildrenProps & AccordionTriggerProps;
+type MenuSubmenuTriggerProps = ChildrenProps &
+	AccordionTriggerProps & {
+		asChild?: boolean;
+	};
 Menu.SubmenuTrigger = function SubmenuTrigger({
 	children,
 	...props

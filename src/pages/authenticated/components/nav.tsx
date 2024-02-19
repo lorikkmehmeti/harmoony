@@ -14,8 +14,6 @@ import {
 	DropdownMenuShortcut,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu.tsx";
-// import { useTheme } from "@/lib/hooks/use-theme.ts";
-// import { useUserContext } from "@/lib/providers/UserProvider.tsx";
 import { useAuthContext } from "@/lib/hooks";
 import { cn } from "@/lib/utils.ts";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +22,6 @@ export function Nav() {
 	const auth = useAuthContext();
 
 	const navigate = useNavigate();
-	// const user = useUser();
-
-	// const $user = useUserContext();
 
 	const logOut = () => {
 		auth

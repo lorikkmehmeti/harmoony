@@ -1,8 +1,9 @@
 import { ROUTES } from "@/lib/constants/routes.ts";
 import { AuthRoutes } from "@/pages/auth/routes";
-import { Dashboard } from "@/pages/dashboard/dashboard.tsx";
+import { Dashboard } from "@/pages/authenticated/dashboard/dashboard.tsx";
+import { UserRoutes } from "@/pages/authenticated/user/routes/routes.tsx";
 import Landing from "@/pages/landing/landing.tsx";
-import ProtectedRoute from "@/routes/ProtectedRoute.tsx";
+import { SIProtectedRoute } from "@/routes/ProtectedRoute.tsx";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 
 export const routerRoutes = createBrowserRouter(
@@ -19,11 +20,12 @@ export const routerRoutes = createBrowserRouter(
 				{
 					path: ROUTES.dashboard,
 					element: (
-						<ProtectedRoute>
+						<SIProtectedRoute>
 							<Dashboard />
-						</ProtectedRoute>
+						</SIProtectedRoute>
 					),
 				},
+				...UserRoutes,
 			],
 		},
 		{

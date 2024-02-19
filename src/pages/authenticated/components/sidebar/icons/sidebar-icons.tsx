@@ -1,4 +1,7 @@
 import {
+	CalendarIcon,
+	CalendarTimeOffIcon,
+	CommunityIcon,
 	FlowIcon,
 	InboxIcon,
 	NotesIcon,
@@ -8,7 +11,7 @@ import {
 	TasksIcon,
 	TeamCloudIcon,
 	TrashIcon,
-} from "@/pages/dashboard/components/sidebar/icons/icons.ts";
+} from "@/pages/authenticated/components/sidebar/icons/icons.ts";
 export const Icons = {
 	Notification: <NotificationIcon />,
 	Tasks: <TasksIcon />,
@@ -19,4 +22,7 @@ export const Icons = {
 	TeamCloud: <TeamCloudIcon />,
 	Trash: <TrashIcon />,
 	Inbox: <InboxIcon />,
+	Calendar: <CalendarIcon />,
+	TimeOff: <CalendarTimeOffIcon />,
+	Community: <CommunityIcon />,
 };

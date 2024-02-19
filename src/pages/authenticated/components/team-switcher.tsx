@@ -3,7 +3,7 @@ import {
 	AvatarFallback,
 	AvatarImage,
 } from "@/components/ui/avatar.tsx";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button.tsx";
 import {
 	Command,
 	CommandEmpty,
@@ -33,9 +33,9 @@ import {
 	Select,
 	SelectContent,
 	SelectItem,
+	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/select";
-import { SelectTrigger } from "@/components/ui/select.tsx";
+} from "@/components/ui/select.tsx";
 import { ROUTES } from "@/lib/constants/routes.ts";
 import { useAuthContext } from "@/lib/hooks";
 import { useTheme } from "@/lib/hooks/use-theme.ts";
@@ -46,17 +46,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const groups = [
-	{
-		label: "Personal Account",
-		teams: [
-			{
-				label: "Sara Landry",
-				value: "personal",
-				image:
-					"https://renderserver.craft.do/api/logo?type=u&colorIdx=8&caption=S",
-			},
-		],
-	},
+	// {
+	// 	label: "Personal Account",
+	// 	teams: [
+	// 		{
+	// 			label: "Sara Landry",
+	// 			value: "personal",
+	// 			image:
+	// 				"https://renderserver.craft.do/api/logo?type=u&colorIdx=8&caption=S",
+	// 		},
+	// 	],
+	// },
 	{
 		label: "Teams",
 		teams: [
@@ -96,7 +96,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 	const [open, setOpen] = React.useState(false);
 	const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
 	const [selectedTeam, setSelectedTeam] = React.useState<Team>(
-		groups[1].teams[3],
+		groups[0].teams[3],
 	);
 
 	const auth = useAuthContext();
@@ -135,11 +135,10 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 							}`,
 							className,
 						)}>
-						<Avatar className="mr-2 h-4 w-4">
+						<Avatar className="mr-2 h-5 w-5">
 							<AvatarImage
 								src={selectedTeam.image}
 								alt={selectedTeam.label}
-								className="object-cover"
 							/>
 							<AvatarFallback>SC</AvatarFallback>
 						</Avatar>
@@ -164,6 +163,41 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 					sideOffset={6}
 					className="border-accent p-0">
 					<Command>
+						<CommandList>
+							<CommandGroup>
+								<CommandItem className="flex items-center py-2">
+									<span className="align-middle leading-4">
+										My Profile{" "}
+										<span className="text-sm font-light text-muted-foreground">
+											@saralandry
+										</span>
+									</span>
+								</CommandItem>
+								<CommandItem className="flex items-center py-2">
+									<span className="align-middle leading-4">
+										Account Settings
+									</span>
+								</CommandItem>
+								<CommandItem className="flex items-center py-2">
+									<span className="align-middle leading-4">
+										Device Management
+									</span>
+								</CommandItem>
+								<CommandItem
+									className="flex items-center py-2"
+									onSelect={() => {
+										setTheme(theme === "dark" ? "light" : "dark");
+									}}>
+									<span className="align-middle leading-4">Change theme</span>
+								</CommandItem>
+								<CommandItem
+									className="flex items-center py-2"
+									onSelect={logOut}>
+									<span className="align-middle leading-4">Sign out</span>
+								</CommandItem>
+							</CommandGroup>
+						</CommandList>
+						<CommandSeparator />
 						<CommandList className="border-accent">
 							{/*<CommandInput*/}
 							{/*	className="border-accent"*/}
@@ -174,6 +208,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 								<ScrollAreaViewport className="max-h-52">
 									{groups.map((group) => (
 										<CommandGroup
+											className="p-3"
 											key={group.label}
 											heading={group.label}>
 											{group.teams.map((team) => (
@@ -208,23 +243,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 									))}
 								</ScrollAreaViewport>
 							</ScrollArea>
-						</CommandList>
-						<CommandSeparator />
-						<CommandList>
-							<CommandGroup>
-								<CommandItem
-									className="flex items-center py-2"
-									onSelect={() => {
-										setTheme(theme === "dark" ? "light" : "dark");
-									}}>
-									<span className="align-middle leading-4">Theme</span>
-								</CommandItem>
-								<CommandItem
-									className="flex items-center py-2"
-									onSelect={logOut}>
-									<span className="align-middle leading-4">Log out</span>
-								</CommandItem>
-							</CommandGroup>
 						</CommandList>
 					</Command>
 				</PopoverContent>

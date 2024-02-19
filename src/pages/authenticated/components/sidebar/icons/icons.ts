@@ -3,7 +3,10 @@ import {
 	AppVersionIcon,
 	ArchiveIcon,
 	BracketIcon,
+	CalendarIcon,
+	CalendarTimeOff,
 	Camera,
+	CommunityIcon,
 	DocumentIcon,
 	EnergyIcon,
 	Flow,
@@ -23,7 +26,7 @@ import {
 	TimesheetIcon,
 	Trash,
 	UserIcon,
-} from "@/pages/dashboard/components/sidebar/icons/icons.tsx";
+} from "@/pages/authenticated/components/sidebar/icons/icons.tsx";
 
 export const className: string =
 	"w-[15px] h-[15px] self-center align-middle leading-none mr-1.5";
@@ -54,12 +57,21 @@ const TimesheetIconWithClasses = withCustomClasses(TimesheetIcon, className);
 const InboxIconWithClasses = withCustomClasses(InboxIcon, className);
 const HelpIconWithClasses = withCustomClasses(HelpIcon, className);
 const AppVersionIconWithClasses = withCustomClasses(AppVersionIcon, className);
+const CalendarIconWithClasses = withCustomClasses(CalendarIcon, className);
+const CalendarTimeOffIconWithClasses = withCustomClasses(
+	CalendarTimeOff,
+	className,
+);
+const CommunityIconWithClasses = withCustomClasses(CommunityIcon, className);
 
 export {
 	AppVersionIconWithClasses as AppVersionIcon,
 	ArchiveIconWithClasses as ArchiveIcon,
 	BracketIconWithClasses as BracketIcon,
+	CalendarIconWithClasses as CalendarIcon,
+	CalendarTimeOffIconWithClasses as CalendarTimeOffIcon,
 	CameraIconWithClasses as CameraIcon,
+	CommunityIconWithClasses as CommunityIcon,
 	DocumentIconWithClasses as DocumentIcon,
 	EnergyIconWithClasses as EnergyIcon,
 	FlowIconWithClasses as FlowIcon,
