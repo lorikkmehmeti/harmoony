@@ -25,5 +25,6 @@ module.exports = {
 		"no-var": "warn",
 		"prefer-const": "error",
 		"prefer-destructuring": "warn",
+		"no-mixed-spaces-and-tabs": "off",
 	},
 };
