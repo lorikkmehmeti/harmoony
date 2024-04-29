@@ -17,6 +17,21 @@ import { ScrollAreaViewport } from "@radix-ui/react-scroll-area";
 import { memo } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
+function isLocationInNavigation<T extends { to: string }>(
+	navigation: Record<string, T>,
+	pathname: string,
+): boolean {
+	for (const key in navigation) {
+		if (Object.prototype.hasOwnProperty.call(navigation, key)) {
+			const item = navigation[key];
+			if (pathname === `${item.to}/`) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 export const Sidebar = memo(function Sidebar() {
 	const { pathname, state } = useLocation();
 	const navigate = useNavigate();
@@ -27,11 +42,11 @@ export const Sidebar = memo(function Sidebar() {
 	return (
 		<ScrollArea className="h-full">
 			<ScrollAreaViewport className="h-full px-2 py-1">
-				<Menu>
+				<Menu className="flex flex-col gap-0.5">
 					{(Object.keys(NAVIGATION) as (keyof typeof NAVIGATION)[]).map(
 						(item) => {
 							return (
-								<Menu.Item>
+								<Menu.Item key={NAVIGATION[item].id}>
 									<Menu.NavLink to={NAVIGATION[item].to}>
 										{NAVIGATION[item].icon ? (
 											<Menu.Icon>{NAVIGATION[item].icon}</Menu.Icon>
@@ -107,18 +122,22 @@ export const Sidebar = memo(function Sidebar() {
 						type="single"
 						id="submenu-1"
 						collapsible
-						defaultValue={open?.length ? "submenu-1" : ""}>
+						defaultValue={
+							isLocationInNavigation(ORGANIZATION, location.pathname)
+								? "submenu-1"
+								: ""
+						}>
 						<Menu.SubMenuItem value="submenu-1">
 							<Menu.SubmenuTrigger className="px-2">
 								<ChevronRight className="mr-1 h-4 w-4 shrink-0 transition-transform duration-200" />
 								<Menu.SubmenuTitle>Organization</Menu.SubmenuTitle>
 							</Menu.SubmenuTrigger>
-							<Menu.SubmenuContent>
+							<Menu.SubmenuContent className="flex flex-col gap-0.5">
 								{(
 									Object.keys(ORGANIZATION) as (keyof typeof ORGANIZATION)[]
-								).map((item) => {
+								).map((item, index) => {
 									return (
-										<Menu.Item>
+										<Menu.Item key={index}>
 											<Menu.NavLink to={ORGANIZATION[item].to}>
 												{ORGANIZATION[item].icon ? (
 													<Menu.Icon>{ORGANIZATION[item].icon}</Menu.Icon>

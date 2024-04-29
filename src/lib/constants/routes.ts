@@ -5,6 +5,11 @@ export const ROUTES = {
 	login: "login",
 	register: "sign-up",
 	dashboard: "dashboard",
+	onboarding: "getting-started",
+	calendar: "calendar",
+	time_off: "time-off",
+	community: "community",
+	people: "people",
 } as const;
 
 export type RoutesKeys = keyof typeof ROUTES;

@@ -3,6 +3,7 @@ import {
 	ResizablePanel,
 	ResizablePanelGroup,
 } from "@/components/ui/resizable.tsx";
+import { useUser } from "@/lib/hooks";
 import { Search } from "@/pages/authenticated/components/search.tsx";
 import {
 	AppVersionIcon,
@@ -11,9 +12,16 @@ import {
 import { MenuItem } from "@/pages/authenticated/components/sidebar/menu-item.tsx";
 import TeamSwitcher from "@/pages/authenticated/components/team-switcher.tsx";
 import { Sidebar } from "@/pages/authenticated/user/components/sidebar.tsx";
+import { useDocumentTitle } from "@uidotdev/usehooks";
 import { Outlet } from "react-router-dom";
-
 const UserLayout = () => {
+	const user = useUser();
+	useDocumentTitle(
+		user?.email
+			? `${user?.email} - Dashboard - Harmoony`
+			: "User Dashboard - Harmoony",
+	);
+
 	return (
 		<ResizablePanelGroup
 			direction="horizontal"

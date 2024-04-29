@@ -83,6 +83,7 @@ type MenuLinkProps = ChildrenProps &
 	NavLinkProps &
 	React.RefAttributes<HTMLAnchorElement> & {
 		to: string;
+		disabled?: boolean;
 	};
 
 type MenuLinkHrefProps = ChildrenProps &
@@ -97,8 +98,11 @@ type MenuButtonProps = ChildrenProps &
 		asChild?: boolean;
 	};
 
-export const Menu = ({ children }: ChildrenProps) => (
-	<React.Fragment>{children}</React.Fragment>
+type MenuProps = ChildrenProps & {
+	className?: string;
+};
+export const Menu = ({ children, className }: MenuProps) => (
+	<div className={cn("flex flex-col gap-0.5", className)}>{children}</div>
 );
 
 Menu.Item = function Item({ children }: ChildrenProps) {
@@ -135,8 +139,14 @@ Menu.NavLink = function MenuNavLink({ to, children, ...props }: MenuLinkProps) {
 		<NavLink
 			to={`${to}/`}
 			end
+			aria-disabled={props.disabled}
 			className={({ isActive }) =>
-				cn(link({ state: isActive ? "active" : "normal" }), props.className)
+				cn(
+					link({ state: isActive ? "active" : "normal" }),
+					props.disabled &&
+						"pointer-events-none cursor-not-allowed select-none opacity-60",
+					props.className,
+				)
 			}
 			{...props}>
 			{children}
