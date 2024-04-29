@@ -9,7 +9,7 @@ export const Landing = () => {
 			<header className="relative z-10">
 				<div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 					<nav
-						className="flex h-16 items-center justify-between"
+						className="flex h-16 items-center justify-between text-black"
 						aria-label="Global">
 						<div
 							className="flex lg:min-w-0"
@@ -42,7 +42,7 @@ export const Landing = () => {
 									aria-hidden="true"></span>
 							</button>
 						</div>
-						<div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
+						<div className="hidden text-black lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
 							<a
 								href="/docs"
 								className="u-text-gray-600 hover:u-text-gray-900 focus:u-text-gray-900 text-sm font-medium focus:outline-none">

@@ -12,7 +12,8 @@ export const buttonVariants = cva(
 					"border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
 				secondary:
 					"bg-secondary text-secondary-foreground hover:bg-secondary/80",
-				ghost: "hover:bg-accent hover:text-accent-foreground",
+				ghost:
+					"light:hover:bg-accent light:hover:text-accent-foreground text-current dark:text-white",
 				link: "text-primary underline-offset-4 hover:underline",
 				dropdown:
 					"border border-input bg-light hover:bg-accent hover:text-accent-foreground w-full h-auto justify-between px-3",
@@ -26,7 +27,7 @@ export const buttonVariants = cva(
 		},
 		defaultVariants: {
 			variant: "default",
-			size: "sm",
+			size: "default",
 		},
 	},
 );

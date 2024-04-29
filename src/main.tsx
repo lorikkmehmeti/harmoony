@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner.tsx";
 import { SessionContextProvider } from "@/lib/providers/SessionContext.tsx";
+import { ThemeProvider } from "@/lib/providers/theme-provider.tsx";
 import { createClient } from "@supabase/supabase-js";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -13,9 +14,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<SessionContextProvider supabaseClient={supabase}>
-			<App />
-			<Toaster />
-		</SessionContextProvider>
+		<ThemeProvider storageKey="ui-theme">
+			<SessionContextProvider supabaseClient={supabase}>
+				<App />
+				<Toaster />
+			</SessionContextProvider>
+		</ThemeProvider>
 	</React.StrictMode>,
 );
