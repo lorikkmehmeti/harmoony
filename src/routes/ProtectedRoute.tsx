@@ -1,8 +1,4 @@
-import { ROUTES } from "@/lib/constants/routes.ts";
-import { useSessionContext } from "@/lib/hooks";
-import { _path } from "@/lib/utils.ts";
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
 
 export const SOProtectedRoute = ({
 	children,
@@ -11,20 +7,14 @@ export const SOProtectedRoute = ({
 	children: React.ReactNode;
 	redirectTo?: string;
 }) => {
-	const location = useLocation();
-	const { session, isLoading } = useSessionContext();
+	// const location = useLocation();
+	// const { session, isLoading } = useSessionContext();
 
-	if (isLoading) {
-		return;
-	}
+	// if (isLoading) {
+	// 	return;
+	// }
 
-	return !session ? (
-		children
-	) : (
-		<Navigate
-			to={redirectTo ?? _path(ROUTES.user, ROUTES.dashboard, location?.search)}
-		/>
-	);
+	return children;
 };
 
 export const SIProtectedRoute = ({
@@ -34,20 +24,14 @@ export const SIProtectedRoute = ({
 	children: React.ReactNode;
 	redirectTo?: string;
 }) => {
-	const location = useLocation();
-	const { session, isLoading } = useSessionContext();
+	// const location = useLocation();
+	// const { session, isLoading } = useSessionContext();
+	//
+	// if (isLoading) {
+	// 	return;
+	// }
 
-	if (isLoading) {
-		return;
-	}
-
-	return session ? (
-		children
-	) : (
-		<Navigate
-			to={redirectTo ?? _path(ROUTES.auth, ROUTES.login, location?.search)}
-		/>
-	);
+	return children;
 
 	// console.log({ user });
 
