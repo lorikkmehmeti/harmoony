@@ -19,7 +19,6 @@ export const SOProtectedRoute = ({
 
 export const SIProtectedRoute = ({
 	children,
-	redirectTo,
 }: {
 	children: React.ReactNode;
 	redirectTo?: string;
